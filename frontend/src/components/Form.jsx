@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 function Form({ setTitulo, setImgSRC, setDescripcion, agregarPost }) {
   return (
     <div className="form">
