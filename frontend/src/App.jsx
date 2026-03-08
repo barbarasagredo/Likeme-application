@@ -41,7 +41,7 @@ function App() {
 
   return (
     <div className="App">
-      <h2 className="py-1 my-4 text-start ms-5">  ⌞ ⌝ Like Me</h2>
+      <h2 className="py-1 my-4 text-start ms-5">  ⌞⌝ Like Me</h2>
       <div className="row m-auto px-5">
         <div className="col-12 col-sm-4 mb-3">
           <Form
