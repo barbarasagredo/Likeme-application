@@ -20,6 +20,7 @@ function App() {
     const post = { titulo, img: imgSrc, descripcion };
     await axios.post(urlBaseServer + "/posts", post);
     getPosts();
+    
   };
 
   // este método se utilizará en el siguiente desafío
@@ -40,9 +41,9 @@ function App() {
 
   return (
     <div className="App">
-      <h2 className="py-5 text-center">&#128248; Like Me &#128248;</h2>
+      <h2 className="py-1 my-4 text-start ms-5">  ⌞ ⌝ Like Me</h2>
       <div className="row m-auto px-5">
-        <div className="col-12 col-sm-4">
+        <div className="col-12 col-sm-4 mb-3">
           <Form
             setTitulo={setTitulo}
             setImgSRC={setImgSRC}
@@ -50,7 +51,7 @@ function App() {
             agregarPost={agregarPost}
           />
         </div>
-        <div className="col-12 col-sm-8 px-5 row posts align-items-start">
+        <div className="col-12 col-sm-8 px-5 posts align-items-start">
           {posts.map((post, i) => (
             <Post key={i} post={post} like={like} eliminarPost={eliminarPost} />
           ))}

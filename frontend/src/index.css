@@ -1,4 +1,4 @@
-body {
+/* body {
   background: #f1f1f1;
 }
 
@@ -31,4 +31,160 @@ i {
 .App {
   font-family: sans-serif;
   text-align: center;
+} */
+
+/* Importamos las fuentes para el toque profesional */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Syne:wght@700&display=swap');
+
+:root {
+  --bg-color: #121212;
+  --card-bg: #1e1e1e;
+  --accent: #ffffff;
+  --text-main: #f5f5f5;
+  --text-muted: #a0a0a0;
+  --error: #ff4d4d;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+.App {
+  text-align: center;
+  padding: 0 20px;
+}
+
+/* Título con Syne para llamar la atención */
+h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: 3rem;
+  text-transform: lowercase;
+  letter-spacing: -2px;
+  margin: 60px 0;
+}
+
+/* Estilización del Formulario (Columna izquierda) */
+.form {
+  background: var(--card-bg) !important;
+  padding: 30px !important;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  text-align: left;
+  position: sticky;
+  top: 20px;
+}
+
+.form h6 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: var(--accent);
+}
+
+.form label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  margin-bottom: 5px;
+  display: block;
+}
+
+.form-control {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 12px !important;
+  color: white !important;
+  padding: 12px !important;
+  margin-bottom: 15px;
+}
+
+.form-control:focus {
+  border-color: var(--accent) !important;
+  box-shadow: none !important;
+}
+
+/* Botón de agregar */
+.btn-light {
+  background: var(--accent) !important;
+  color: black !important;
+  border-radius: 50px !important;
+  font-weight: 600 !important;
+  padding: 10px 30px !important;
+  text-transform: lowercase;
+  border: none !important;
+  width: 100%;
+}
+
+/* Grid de Posts (Estilo Pinterest) */
+.posts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+/* Card de cada Post */
+.card {
+  background: var(--card-bg) !important;
+  border-radius: 20px !important;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-img-top {
+  height: 250px;
+  object-fit: cover;
+  filter: grayscale(20%);
+  transition: filter 0.3s ease;
+}
+
+.card:hover .card-img-top {
+  filter: grayscale(0%);
+}
+
+.card-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.card-text {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* Iconos de Like y Eliminar */
+.fa-heart {
+  transition: color 0.2s;
+  cursor: pointer;
+}
+
+.fa-solid {
+  color: var(--error) !important; /* Corazón rojo al dar like */
+}
+
+.fa-regular {
+  color: var(--text-muted);
+}
+
+.fa-x {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.fa-x:hover {
+  opacity: 1;
+  color: var(--error) !important;
 }
