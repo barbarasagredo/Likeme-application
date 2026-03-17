@@ -31,7 +31,24 @@ app.post("/posts", async (req, res) => {
     );
     res.send("Post añadido con éxito");
   } catch (error) {
-    res.json({
+    console.log("Error en la consulta POST /posts: " + error);
+    res.status(500).json({
+      error: error.code,
+      message: error.message,
+    });
+  }
+});
+
+app.delete("/posts/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    let consulta = "DELETE from posts WHERE id = $1";
+    let values = [id];
+    const result = await pool.query(consulta, values);
+    res.send("Post eliminado con éxito");
+  } catch (error) {
+    console.log("Error en consulta DELETE /posts: " + error);
+    res.status(500).json({
       error: error.code,
       message: error.message,
     });
