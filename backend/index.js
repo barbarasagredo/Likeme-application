@@ -5,7 +5,11 @@ const cors = require("cors");
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://barbarasagredo.github.io",
+  }),
+);
 
 app.listen(3000, () => {
   console.log("Servidor encendido en puerto 3000");
@@ -32,6 +36,24 @@ app.post("/posts", async (req, res) => {
     res.send("Post añadido con éxito");
   } catch (error) {
     console.log("Error en la consulta POST /posts: " + error);
+    res.status(500).json({
+      error: error.code,
+      message: error.message,
+    });
+  }
+});
+
+app.put("/posts/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { titulo, img, descripcion } = req.body;
+    let consulta =
+      "UPDATE posts SET titulo = $1, img = $2, descripcion = $3 WHERE id = $4";
+    let values = [titulo, img, descripcion, id];
+    const result = await pool.query(consulta, values);
+    res.send("Post modificado con éxito");
+  } catch (error) {
+    console.log("Error en la consulta PUT /posts: " + error);
     res.status(500).json({
       error: error.code,
       message: error.message,
