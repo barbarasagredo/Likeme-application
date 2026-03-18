@@ -7,7 +7,8 @@ function Form({ setTitulo, setImgSRC, setDescripcion, agregarPost }) {
         <label>Título</label>
         <input
           onChange={(event) => setTitulo(event.target.value)}
-          className="form-control" maxLength={25}
+          className="form-control"
+          maxLength={25}
         />
       </div>
       <div className="mb-2">
