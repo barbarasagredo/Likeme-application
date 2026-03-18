@@ -5,11 +5,19 @@ const cors = require("cors");
 const app = express();
 
 app.use(express.json());
-app.use(
-  cors({
-    origin: "https://barbarasagredo.github.io",
-  }),
-);
+const corsOptions = {
+  origin: [
+    "https://barbarasagredo.github.io",
+    "http://localhost:5173",
+    "http://localhost:3000",
+    "http://127.0.0.1:5173",
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 app.listen(3000, () => {
   console.log("Servidor encendido en puerto 3000");
@@ -42,6 +50,7 @@ app.post("/posts", async (req, res) => {
     });
   }
 });
+
 
 app.put("/posts/:id", async (req, res) => {
   try {
