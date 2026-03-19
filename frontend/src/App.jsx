@@ -21,16 +21,13 @@ function App() {
     const post = { titulo, img: imgSrc, descripcion };
     await axios.post(urlBaseServer + "/posts", post);
     getPosts();
-    
   };
 
-  // este método se utilizará en el siguiente desafío
   const like = async (id) => {
     await axios.put(urlBaseServer + `/posts/like/${id}`);
     getPosts();
   };
 
-  // este método se utilizará en el siguiente desafío
   const eliminarPost = async (id) => {
     await axios.delete(urlBaseServer + `/posts/${id}`);
     getPosts();
@@ -42,7 +39,7 @@ function App() {
 
   return (
     <div className="App">
-      <h2 className="py-1 my-4 text-start ms-5">  ⌞⌝ Like Me</h2>
+      <h2 className="py-1 my-4 text-start ms-5"> ⌞⌝ Like Me</h2>
       <div className="row m-auto px-5">
         <div className="col-12 col-sm-4 mb-3">
           <Form
