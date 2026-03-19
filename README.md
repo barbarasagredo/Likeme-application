@@ -1,6 +1,6 @@
 # ⌞⌝ LikeMe Application
 
-Aplicación desarrollada como parte del desafío "Like Me (Parte I)" de Desafío Latam.
+Aplicación desarrollada como parte del desafío "Like Me (Parte II)" de Desafío Latam. Web de la aplicación [aquí](https://barbarasagredo.github.io/Likeme-application/)!
 
 ## 📖 Descripción
 
@@ -11,6 +11,8 @@ El objetivo de este proyecto fue desarrollar el servidor backend que permita:
 - Consultar publicaciones existentes
 - Crear nuevos posts
 - Almacenar la información en una base de datos
+- Agregar conteo de likes
+- Eliminar posts
 
 Todo esto utilizando Node.js, Express y PostgreSQL. 
 
@@ -22,6 +24,7 @@ Todo esto utilizando Node.js, Express y PostgreSQL.
 - pg (node-postgres)
 - CORS
 - JavaScript
+- React + Vite
 
 ## ⚙️ Instalación
 
