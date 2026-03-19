@@ -54,38 +54,41 @@ app.post("/posts", async (req, res) => {
 app.put("/posts/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const { titulo, img, descripcion, action } = req.body;
-
-    let consulta;
-    let values;
-
-    if (action === "like") {
-      consulta =
-        "UPDATE posts SET likes = COALESCE(likes, 0) + 1 WHERE id = $1 RETURNING *";
-      values = [id];
-    } else if (titulo && img && descripcion) {
-      consulta =
-        "UPDATE posts SET titulo = $1, img = $2, descripcion = $3 WHERE id = $4";
-      values = [titulo, img, descripcion, id];
-    } else {
+    const { titulo, img, descripcion } = req.body;
+    if (!titulo || !img || !descripcion) {
       return res.status(400).json({
         error: "BAD_REQUEST",
-        message:
-          "Debe enviar todos los campos (titulo, img, descripcion) o action='like'",
+        message: "Los campos titulo, img y descripcion son requeridos",
       });
     }
+    let consulta =
+      "UPDATE posts SET titulo = $1, img = $2, descripcion = $3 WHERE id = $4";
+    let values = [titulo, img, descripcion, id];
     const result = await pool.query(consulta, values);
-    res.status(200).json({
-      message:
-        action === "like"
-          ? "Like agregado con éxito"
-          : "Post actualizado con éxito",
-      post: result.rows[0],
-    });
+    res.send("Post modificado con éxito");
   } catch (error) {
     console.log("Error en la consulta PUT /posts: " + error);
     res.status(500).json({
       error: error.code,
+      message: error.message,
+    });
+  }
+});
+app.put("/posts/like/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const consulta =
+      "UPDATE posts SET likes = COALESCE(likes, 0) + 1 WHERE id = $1 RETURNING *";
+    const values = [id];
+    const result = await pool.query(consulta, values);
+    res.status(200).json({
+      message: "Like agregado con éxito",
+      post: result.rows[0],
+    });
+  } catch (error) {
+    console.log("Error en la consulta PUT /posts/like/:id:", error);
+    res.status(500).json({
+      error: error.code || "SERVER_ERROR",
       message: error.message,
     });
   }
